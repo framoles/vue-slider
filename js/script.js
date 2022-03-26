@@ -26,7 +26,7 @@ const slides = [
     }
 ];
 
-
+let interval;
 
 const vueApp = new Vue({
     el: "#app",
@@ -51,8 +51,19 @@ const vueApp = new Vue({
             if (slide.title == this.slides[this.index].title) {
                 return "thumb active"
             }
-
             return "thumb"
+        },
+        showBig(slide) {
+            const index = this.slides.indexOf(slide);
+            this.index = index;
+        },
+        autoPlay() {
+            interval = setInterval(this.goNext, 3000);
+        },
+        blockPlay() {
+            clearInterval(interval);
         }
     }
 })
+
+
